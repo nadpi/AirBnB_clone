@@ -1,6 +1,5 @@
 #!usr/bin/python3
 """ module 1"""
-""" the imports """
 from uuid import uuid4
 from datetime import datetime
 
