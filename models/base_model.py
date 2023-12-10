@@ -1,7 +1,7 @@
 #!usr/bin/python3
 """ Base Model Class """
-import uuid
-import datetime
+from uuid import uuid4
+from datetime import datetime
 
 
 class BaseModel:
@@ -20,8 +20,8 @@ class BaseModel:
 
         self.name = name
         self.my_number = my_number
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.datetime.now()
+        self.id = str(uuid4())
+        self.created_at = datetime.now()
         self.updated_at = self.created_at
 
     def __str__(self):
@@ -33,7 +33,7 @@ class BaseModel:
         """  updates the public instance attribute
         updated_at with the current datetime """
 
-        self.updated_at = datetime.datetime.now()
+        self.updated_at = datetime.now()
 
     def to_dict(self):
         """  returns a dictionary containing all keys/values
