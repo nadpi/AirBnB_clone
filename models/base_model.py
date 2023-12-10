@@ -1,25 +1,22 @@
 #!usr/bin/python3
-""" Base Model Class """
+""" module 1"""
+""" the imports """
 from uuid import uuid4
 from datetime import datetime
 
 
 class BaseModel:
-    """ a class that defines all common
-    attributes/methods for other classes """
-
-    def __init__(self, name="", my_number=0):
-        """ attributes
-        id: string - assign with an uuid when an instance is created
-        created_at: datetime - assign with the current datetime
-        when an instance is created
-        updated_at: datetime - assign with the current datetime
-        when an instance is created and it will be updated
-        every time you change your object
+    """ class BaseModel defines all common
+        attributes/methods for other classes
+        Public instance attributes:
+        - id: string - assigned with a uuid when an instance is created.
+        - created_at: datetime - assigned with the current datetime
+        when an instance is created.
+        - updated_at: datetime - assigned with the current datetime
+        when an instance is created and updated on object changes.
         """
 
-        self.name = name
-        self.my_number = my_number
+    def __init__(self):
         self.id = str(uuid4())
         self.created_at = datetime.now()
         self.updated_at = self.created_at
