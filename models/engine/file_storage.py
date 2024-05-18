@@ -2,6 +2,7 @@
 '''task 5'''
 import json
 import os
+from models.base_model import BaseModel
 
 
 class FileStorage:
@@ -15,7 +16,7 @@ class FileStorage:
 
     def new(self, obj):
         '''sets in __objects the obj with key <obj class name>.id'''
-        self.__objects[obj.__class__.__name__ + '.' + str(obj.id)] = obj
+        self.__objects[str(obj.__class__.__name__) + '.' + str(obj.id)] = obj
 
     def save(self):
         '''serializes __objects to the JSON file (path: __file_path)'''
@@ -27,9 +28,9 @@ class FileStorage:
             json.dump(json_object, f)
 
     def reload(self):
-        '''deserializes the JSON file to __objects'''
+        '''Deserializes the JSON file to __objects'''
         if os.path.exists(self.__file_path):
-            with open(self.__file_path, "r", encoding="UTF8") as read:
-                for key, value in json.load(read).items():
+            with open(self.__file_path, 'r', encoding="UTF8") as f:
+                for key, value in json.load(f).items():
                     attri_value = eval(value["__class__"])(**value)
                     self.__objects[key] = attri_value
