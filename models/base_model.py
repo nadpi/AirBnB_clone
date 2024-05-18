@@ -14,7 +14,7 @@ class BaseModel:
 
     def __str__(self):
         '''print: [<class name>] (<self.id>) <self.__dict__>'''
-        return '['+self.__class__.__name+'] ('+self.id+') '+self.__dict__
+        return '['+self.__class__.__name__+'] ('+self.id+') '+str(self.__dict__)
 
     def save(self):
         '''updates the public instance attribute updated_at
@@ -25,7 +25,7 @@ class BaseModel:
         ''' returns a dictionary containing all keys/values
         of __dict__ of the instance:'''
         todict = self.__dict__
-        todict['__class__'] = self.__class__.name
+        todict['__class__'] = self.__class__.__name__
         todict['created_at'] = self.created_at.isoformat()
         todict['updated_at'] = self.updated_at.isoformat()
         return todict
