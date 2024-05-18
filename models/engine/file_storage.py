@@ -6,7 +6,7 @@ import os
 
 class FileStorage:
     '''class FileStorage'''
-    __file_path = "models/engine/file.json"
+    __file_path = "file.json"
     __objects = {}
 
     def all(self):
