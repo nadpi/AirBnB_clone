@@ -30,7 +30,7 @@ class TestBaseModel(unittest.TestCase):
 
     def testUpdatedAt(self):
         my_model = BaseModel()
-        self.assertIsNotNone(my_model.updated_at, "updated_at
+        self.assertIsNotNone(my_model.updated_at, "updated_at\
                              should be initialized")
         self.assertIsInstance(my_model.updated_at, datetime,
                               "updated_at should be a datetime object")
