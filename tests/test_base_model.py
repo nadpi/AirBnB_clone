@@ -13,12 +13,21 @@ class TestBaseModel(unittest.TestCase):
         my_model_updated2 = my_model.updated_at
         self.assertNotEqual(my_model_updated, my_model_updated2, "updated_at should be different after save")
 
+    def test2IDS(self):
+        model1 = BaseModel()
+        model2 = BaseModel()
+        self.assertNotEqual(model1.id, model2.id, "ids should differ")
     def testStr(self):
         my_model = BaseModel()
         my_model.name = "My First Model"
         my_model.my_number = 89
         expected_str = my_model.__str__()
         self.assertEqual(str(my_model), expected_str, "The __str__ method output is incorrect")
+
+    def testUpdatedAt(self):
+        my_model = BaseModel()
+        self.assertIsNotNone(my_model.updated_at, "updated_at should be initialized")
+        self.assertIsInstance(my_model.updated_at, datetime, "updated_at should be a datetime object")
 
     def testTo_dict(self):
         my_model = BaseModel()
