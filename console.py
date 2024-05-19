@@ -69,6 +69,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found ** ")
             else:
                 dictObj = models.storage.all()
+                del dictObj[className+'.'+classID]
      
     def do_all(self, line):
         model = BaseModel()
