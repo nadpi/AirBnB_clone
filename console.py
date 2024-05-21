@@ -100,16 +100,18 @@ class HBNBCommand(cmd.Cmd):
         classID = None
         if len(strlist) == 2:
             classID = strlist[1]
-            return
         if className not in self.classes.keys():
             print("** class doesn't exist **")
-        elif classID is None:
+            return
+        if classID is None:
             print("** instance id missing **")
-        elif className+'.'+classID not in models.storage.all():
+            return
+        key = className + '.' + classID
+        if key not in models.storage.all():
             print("** no instance found **")
-        else:
-            dictObj = models.storage.all()
-            del dictObj[className+'.'+classID]
+            return
+        del models.storage.all()[key]
+        models.storage.save()
 
     def do_all(self, line):
         if line not in self.classes.keys():
