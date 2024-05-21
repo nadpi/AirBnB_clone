@@ -94,22 +94,22 @@ class HBNBCommand(cmd.Cmd):
         if len(line) == 0:
             print("** class name missing **")
             return
+
+        strlist = line.split(" ")
+        className = strlist[0]
+        classID = None
+        if len(strlist) == 2:
+            classID = strlist[1]
+            return
+        if className not in self.classes.keys():
+            print("** class doesn't exist **")
+        elif classID is None:
+            print("** instance id missing **")
+        elif className+'.'+classID not in models.storage.all():
+            print("** no instance found **")
         else:
-            strlist = line.split(" ")
-            className = strlist[0]
-            classID = None
-            if len(strlist) == 2:
-                classID = strlist[1]
-                return
-            if className not in self.classes.keys():
-                print("** class doesn't exist **")
-            elif classID is None:
-                print("** instance id missing **")
-            elif className+'.'+classID not in models.storage.all():
-                print("** no instance found **")
-            else:
-                dictObj = models.storage.all()
-                del dictObj[className+'.'+classID]
+            dictObj = models.storage.all()
+            del dictObj[className+'.'+classID]
 
     def do_all(self, line):
         if line not in self.classes.keys():
