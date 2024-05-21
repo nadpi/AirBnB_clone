@@ -82,13 +82,13 @@ class HBNBCommand(cmd.Cmd):
                 classID = strlist[1]
                 attrName = strlist[2]
                 attrValue = strlist[3]
-            if className not in self.classes.keys():
-                print("** class doesn't exist **")
-            elif className+'.'+classID not in models.storage.all():
-                print("** no instance found **")
-            else:
-                model = self.classes[className]()
-                model.attrName = attrValue
+                if className not in self.classes.keys():
+                    print("** class doesn't exist **")
+                elif className+'.'+classID not in models.storage.all():
+                    print("** no instance found **")
+                else:
+                    model = self.classes[className]()
+                    model.attrName = attrValue
 
     def do_destroy(self, line):
         if len(line) == 0:
@@ -117,5 +117,3 @@ class HBNBCommand(cmd.Cmd):
             print(list(models.storage.all()))
 
 
-if __name__ == '__main__':
-    HBNBCommand().cmdloop()
