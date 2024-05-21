@@ -110,7 +110,6 @@ class HBNBCommand(cmd.Cmd):
             else:
                 dictObj = models.storage.all()
                 del dictObj[className+'.'+classID]
-                models.storage.save()
 
     def do_all(self, line):
         if line not in self.classes.keys():
