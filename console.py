@@ -118,5 +118,3 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             print(list(models.storage.all()))
-
-
