@@ -93,13 +93,14 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, line):
         if len(line) == 0:
             print("** class name missing **")
-            pass
+            return
         else:
             strlist = line.split(" ")
             className = strlist[0]
             classID = None
             if len(strlist) == 2:
                 classID = strlist[1]
+                return
             if className not in self.classes.keys():
                 print("** class doesn't exist **")
             elif classID is None:
@@ -109,6 +110,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 dictObj = models.storage.all()
                 del dictObj[className+'.'+classID]
+                models.storage.save()
 
     def do_all(self, line):
         if line not in self.classes.keys():
