@@ -1,7 +1,14 @@
 #!/usr/bin/python3
 '''console'''
-import cmd, sys
+import cmd
+import sys
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 import models
 
 
@@ -9,6 +16,9 @@ class HBNBCommand(cmd.Cmd):
     '''cmd'''
     prompt = '(hbnb) '
     file = None
+    classes = {"User": "User", "BaseModel": "BaseModel", "State": "State",
+               "City": "City", "Amenity": "Amenity", "Place": "Place",
+               "Review": "Review"}
 
     def do_quit(self, line):
         return True
@@ -42,10 +52,10 @@ class HBNBCommand(cmd.Cmd):
                 classID = strlist[1]
             if className != model.__class__.__name__:
                 print("** class doesn't exist **")
-            elif classID == None:
+            elif classID is None:
                 print("** instance id missing **")
             elif className+'.'+classID not in models.storage.all():
-                print("** no instance found ** ")
+                print("** no instance found **")
             else:
                 dictObj = models.storage.all()
                 print(str(dictObj[className+'.'+classID]))
@@ -63,20 +73,21 @@ class HBNBCommand(cmd.Cmd):
                 classID = strlist[1]
             if className != model.__class__.__name__:
                 print("** class doesn't exist **")
-            elif classID == None:
+            elif classID is None:
                 print("** instance id missing **")
             elif className+'.'+classID not in models.storage.all():
-                print("** no instance found ** ")
+                print("** no instance found **")
             else:
                 dictObj = models.storage.all()
                 del dictObj[className+'.'+classID]
-     
+
     def do_all(self, line):
         model = BaseModel()
         if line != model.__class__.__name__:
-                print("** class doesn't exist **")
+            print("** class doesn't exist **")
         else:
             print(list(models.storage.all()))
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
