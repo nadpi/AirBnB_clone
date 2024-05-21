@@ -116,7 +116,7 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, line):
         if line not in self.classes.keys():
             print("** class doesn't exist **")
-            return
-        print(list(models.storage.all()))
+        else:
+            print(list(models.storage.all()))
 
 
